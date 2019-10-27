@@ -79,7 +79,9 @@ def random_rotation(n, theta=None):
                     [np.sin(theta), np.cos(theta)]])
     out = np.eye(n)
     out[:2, :2] = rot
-    q = np.linalg.qr(np.random.randn(n, n))[0]
+    q = np.linalg.qr(np.random.randn(n, n))[0] # q is a matrix with orthonormal columns
+    # for n=2 the return is: [[np.cos(theta), np.sin(theta)],
+    #                     [-np.sin(theta), np.cos(theta)]]
     return q.dot(out).dot(q.T)
 
 

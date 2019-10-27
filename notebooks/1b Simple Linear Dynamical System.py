@@ -9,7 +9,7 @@ import autograd.numpy.random as npr
 npr.seed(0)
 
 import matplotlib.pyplot as plt
-get_ipython().run_line_magic('matplotlib', 'inline')
+#get_ipython().run_line_magic('matplotlib', 'inline')
 
 from matplotlib.gridspec import GridSpec
 
@@ -88,7 +88,7 @@ plt.xlabel("$x_1$")
 plt.ylabel("$x_2$")
 plt.title("Simulated Latent States")
 plt.tight_layout()
-
+plt.show()
 if save_figures:
     plt.savefig("lds_1.pdf")
 
