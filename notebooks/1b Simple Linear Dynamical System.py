@@ -76,10 +76,12 @@ _, x, y = true_lds.sample(T)
 xmins = x.min(axis=0)
 xmaxs = x.max(axis=0)
 npts = 20
-true_lds.dynamics.As[0] = A
+true_lds.dynamics.As[0] = A # what is this line good for? A hasn't changed
 XX, YY = np.meshgrid(np.linspace(xmins[0], xmaxs[0], npts), np.linspace(xmins[1], xmaxs[1], npts))
-XY = np.column_stack((XX.ravel(), YY.ravel(), np.zeros((npts**2, D-2))))
-dx = XY.dot(A.T) + b - XY
+XY = np.column_stack((XX.ravel(), YY.ravel(), np.zeros((npts**2, D-2)))).transpose()
+dx = A.dot(XY) + b[:, np.newaxis] - XY
+
+dx = dx.T # since it is accepted that the first dimension is the time-tag
 
 plt.figure(figsize=(6, 6))
 plt.quiver(XX, YY, dx[:,0], dx[:,1], color=colors[0])
